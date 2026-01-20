@@ -1,0 +1,27 @@
+server:
+  port: 8080  #端口号
+  servlet:
+    context-path: /server    #项目访问路径
+spring:
+#  data:
+#    mongodb:
+#      host: 192.168.127.131
+#      port: 27017
+#      database: cloudtest
+#      username: cloudtest
+#      password: cloudtest
+#  redis:
+#    host: 192.168.127.131
+#    port: 6379
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.1.13:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+    #kafka配置
+
+mybatis:
+  mapper-locations: classpath:mappers/*Mapper.xml
+  type-handlers-package: com.example.demo.player.handler
+swagger:
+  enable: true

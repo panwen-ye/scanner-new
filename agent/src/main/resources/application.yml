@@ -1,0 +1,14 @@
+server:
+  port: 8082   #端口号
+  servlet:
+    context-path: /agent    #项目访问路径
+task:
+  server:
+    url: http://localhost:8080/server
+  fileThreshold : 200
+  poolSize: 4
+agent:
+  maxConcurrentTasks: 2
+  leaseSeconds: 300
+swagger:
+  enable: true

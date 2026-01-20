@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.scanner.server.mappers.ScannerMapper">
+
+
+    <insert id="executeSql">
+        ${sql}
+    </insert>
+
+    <select id="queryScanTask" resultType="com.example.scanner.server.domain.ScanTask">
+        select
+         task_id as taskId  , path, shard_id as  shardId, status, priority, file_threshold as fileThreshold
+        from scan_task_queue where
+        task_id = #{taskId}
+    </select>
+</mapper>
