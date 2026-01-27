@@ -11,12 +11,12 @@ sequenceDiagram
 
     loop pullSubTask
         Agent->>Server: pullSubTask(taskId, agentId)
-        Server->>DB: select subTask where status='pending'
-        DB-->>Server: subTask / null
-        Server-->>Agent: subTask / null
-
+        Server->>DB: select subTask where status='new'
+        
         alt subTask != null
             Server->>DB: update subtask_queue set status='running', pcIp='ip' where id=subTaskId
+            DB-->>Server: subTask / null
+            Server-->>Agent: subTask / null
             Agent->>Agent: DirectoryScanner.scan(subTaskPath)
             Agent->>Agent: threadPool.execute(fileReadTask)
 
@@ -48,6 +48,8 @@ sequenceDiagram
     Agent->>Server: notifyTaskClosed(taskId, agentId)
     Server->>DB: update task set status='closed_confirmed'
     Agent->>Agent: shutdown threadPool
+
+
 
 ```
 
