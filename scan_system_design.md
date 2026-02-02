@@ -2,7 +2,8 @@
 
 ## 一、整体架构图（Mermaid）
 
-```sequenceDiagram
+```
+sequenceDiagram    
     autonumber
     participant Agent
     participant Server
@@ -47,6 +48,10 @@
     Agent->>Server: notifyTaskClosed(taskId, agentId)
     Server->>DB: update task set status='closed_confirmed'
     Agent->>Agent: shutdown threadPool
+
+
+
+
 
 
 
