@@ -2,8 +2,7 @@
 
 ## 一、整体架构图（Mermaid）
 
-```mermaid
-sequenceDiagram
+```sequenceDiagram
     autonumber
     participant Agent
     participant Server
@@ -17,7 +16,7 @@ sequenceDiagram
             Server->>DB: update subtask_queue set status='running', pcIp='ip' where id=subTaskId
             DB-->>Server: subTask / null
             Server-->>Agent: subTask / null
-            Agent->>Agent: DirectoryScanner.scan(subTaskPath)
+            Agent->>Agent: ScannerFileSearchService.startFileScanning(subTaskPath)
             Agent->>Agent: threadPool.execute(fileReadTask)
 
             loop 文件读取（多线程）
@@ -48,6 +47,9 @@ sequenceDiagram
     Agent->>Server: notifyTaskClosed(taskId, agentId)
     Server->>DB: update task set status='closed_confirmed'
     Agent->>Agent: shutdown threadPool
+
+
+
 
 
 
